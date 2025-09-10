@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8'>
+	<title>NodeVoip</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="./js/voip.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+	<h1>NodeJsVoip</h1>
+	<input id="roomInput" placeholder="Room Name"><button id="changeRoom">Change</button>
+	<button id="startBtn"><h2>Start Talking</h2></button>
+	<p>There's <span id="clients"><i>[ Loading... ]</i></span></p><br>
+	<b>Mic audio</b><br>
+	<canvas id="micaudio" height="200"></canvas><br>
+
+	<b>Incoming audio</b><br>
+	<canvas id="incaudio" height="200"></canvas>
+</body>
+
+</html>
