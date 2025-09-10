@@ -1,20 +1,19 @@
-# Use modern Node LTS (boron = Node 6 is too old!)
 FROM node:18
 
-LABEL maintainer="rofl256"
-
-# Create app directory
 WORKDIR /opt/app
 
-# Install app dependencies
-COPY package.json package-lock.json* ./
-RUN npm install --production
+# Copy backend package files
+COPY package*.json ./
 
-# Bundle app source
+RUN npm install
+
+# Copy everything (backend + frontend source)
 COPY . .
 
-# Expose backend port (your server listens on 3001, not 8080)
-EXPOSE 3001
+# Build frontend if needed
+RUN npm run build   # <-- this generates /build
 
-# Start the app
-CMD ["node", "index.js"]
+# Expose Express port
+EXPOSE 8080
+
+CMD ["npm", "start"]
