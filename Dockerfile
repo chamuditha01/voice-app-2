@@ -1,18 +1,20 @@
-FROM node:boron
+# Use modern Node LTS (boron = Node 6 is too old!)
+FROM node:18
 
-MAINTAINER rofl256
+LABEL maintainer="rofl256"
 
 # Create app directory
-RUN mkdir -p /opt/app
 WORKDIR /opt/app
 
 # Install app dependencies
-COPY ./package.json /opt/app
-RUN npm install
+COPY package.json package-lock.json* ./
+RUN npm install --production
 
 # Bundle app source
-COPY . /opt/app
+COPY . .
 
-EXPOSE 8080
+# Expose backend port (your server listens on 3001, not 8080)
+EXPOSE 3001
 
-CMD [ "npm", "start" ]
+# Start the app
+CMD ["node", "server.js"]
